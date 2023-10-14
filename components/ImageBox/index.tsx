@@ -12,15 +12,16 @@ const ImageBox = (props) => {
               className="wow fadeInUp mb-12 rounded-md bg-primary/[3%] py-11 px-8 dark:bg-dark sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]"
               data-wow-delay=".15s"
             >
-              <Image
-                ref={props.imageRef}
-                src={props.imageUrl}
-                alt="logo"
-                className="dark w-full"
-                layout="fixed"
-                width={140}
-                height={30}
-              />
+              {props.imageUrl && (
+                <Image
+                  ref={props.imageRef}
+                  src={props.imageUrl}
+                  alt="logo"
+                  className="dark w-full"
+                  width={140}
+                  height={30}
+                />
+              )}
 
               <div className="w-full px-4">
                 <button

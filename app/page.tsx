@@ -129,7 +129,7 @@ export default function Home() {
   };
   const uploadTrigger = () => {
     //@ts-ignore
-    fileInputRef.current.click();
+    if (fileInputRef) fileInputRef.current.click();
   };
   const handleInputChange = (e) => {
     setImageUrl(e.target.value);

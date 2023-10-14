@@ -17,13 +17,6 @@ const Hero = (props) => {
                 </h1>
 
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-                  {/* <Link
-                    // onClick={uploadTrigger}
-                    className="rounded-md bg-primary py-4 px-8 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
-                  >
-                    🔥 Upload
-                  </Link> */}
-
                   <input
                     style={{ display: "none" }}
                     type="file"
