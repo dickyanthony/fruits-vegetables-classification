@@ -71,6 +71,7 @@ export default function Home() {
     "pomegranate",
     "pineapple",
     "watermelon",
+    "pear",
   ];
 
   const vegetables = [
@@ -89,7 +90,18 @@ export default function Home() {
     "garlic",
     "tomato",
     "turnip",
+    "paprika",
+    "soybeans",
+    "onion",
+    "chilli pepper",
+    "jalapeno",
+    "ginger",
+    "lettuce",
+    "peas",
+    "potato",
+    "radish",
   ];
+
   const fetchCalory = async (prediction) => {
     // try {
     //   const url = `https://www.google.com/search?&q=calories+in+${prediction}`;
