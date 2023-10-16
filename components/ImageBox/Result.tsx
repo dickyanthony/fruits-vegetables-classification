@@ -5,28 +5,27 @@ const Result = (props) => {
       data-wow-delay=".2s"
     >
       <p className="mb-3 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
-        Type
+        Top Type
       </p>
       <h1 className="mb-6 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
         {props.type ? props.type : "Unknown"}
       </h1>
 
       <p className="mb-3 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
-        Name
+        Top 3 Name and Probability
       </p>
-      <h1 className="mb-6 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-        {props.result && props.result.length !== 0
-          ? props.result.map((x) => x.className)
-          : "Unknown"}
-      </h1>
-
-      <p className="mb-3 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
-        Probability
-      </p>
-      <h1 className="mb-6 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-        {props.result && props.result.length !== 0
-          ? props.result.map((x) => (x.probability * 100).toFixed(2) + "0%")
-          : "0%"}
+      <h1 className="mb-6 text-2xl font-bold leading-tight text-black dark:text-white sm:text-3xl sm:leading-tight md:text-4xl md:leading-tight">
+        {props.result && props.result.length !== 0 ? (
+          <ul>
+            {props.result.map((x) => (
+              <li style={{ marginBottom: "10px" }} key={x.className}>
+                {`${x.className} (${(x.probability * 100).toFixed(2)}%)`}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          "Unknown"
+        )}
       </h1>
 
       <div className="absolute top-0 left-0 z-[-1]">

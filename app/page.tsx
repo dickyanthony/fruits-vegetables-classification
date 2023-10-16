@@ -186,17 +186,8 @@ export default function Home() {
 
       const predictions = await model.predict(normalized).data();
 
-      const topClassIndex = predictions.indexOf(Math.max(...predictions));
-
-      const topClassName = labels[topClassIndex];
-
-      if (fruits.includes(topClassName.toLowerCase())) {
-        setType("Fruit");
-      } else if (vegetables.includes(topClassName.toLowerCase())) {
-        setType("Vegetable");
-      } else {
-        setType("Unknown");
-      }
+      const topClassIndices = getTopKClassIndices(predictions, 3);
+      const topClassNames = topClassIndices.map((index) => labels[index]);
 
       const classLabels = Array.from(Array(predictions.length).keys()).map(
         (classIndex) => {
@@ -207,11 +198,22 @@ export default function Home() {
         }
       );
 
-      setResult([
-        { className: topClassName, probability: predictions[topClassIndex] },
-      ]);
+      setResult(
+        topClassNames.map((className, index) => ({
+          className: className,
+          probability: predictions[topClassIndices[index]],
+        }))
+      );
 
-      setClassLabels(classLabels);
+      const topClassName = topClassNames[0];
+      if (fruits.includes(topClassName.toLowerCase())) {
+        setType("Fruit");
+      } else if (vegetables.includes(topClassName.toLowerCase())) {
+        setType("Vegetable");
+      } else {
+        setType("Unknown");
+      }
+
       fetchCalory(topClassName);
       setIsLoading(false);
     } catch (error) {
@@ -219,6 +221,13 @@ export default function Home() {
       setIsLoading(false);
     }
   };
+
+  function getTopKClassIndices(predictions, k) {
+    const classIndices = Array.from(Array(predictions.length).keys());
+    return classIndices
+      .sort((a, b) => predictions[b] - predictions[a])
+      .slice(0, k);
+  }
   return (
     <>
       <ScrollUp />
