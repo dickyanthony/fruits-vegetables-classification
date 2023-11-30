@@ -189,15 +189,6 @@ export default function Home() {
       const topClassIndices = getTopKClassIndices(predictions, 3);
       const topClassNames = topClassIndices.map((index) => labels[index]);
 
-      const classLabels = Array.from(Array(predictions.length).keys()).map(
-        (classIndex) => {
-          return {
-            className: labels[classIndex],
-            probability: predictions[classIndex],
-          };
-        }
-      );
-
       setResult(
         topClassNames.map((className, index) => ({
           className: className,
@@ -249,3 +240,5 @@ export default function Home() {
     </>
   );
 }
+
+// tensorflowjs_converter --input_format=keras /tmp/model.h5 /tmp/tfjs_model
